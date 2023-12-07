@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v7
+      with:
+        dotnet-version: '3.1' # Adjust the version as needed
+
+    - name: Build and Test
+      run: |
+        dotnet build --configuration Release
+        dotnet test
+
+    # Add additional steps for deployment, if needed
